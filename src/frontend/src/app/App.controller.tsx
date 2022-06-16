@@ -26,13 +26,13 @@ export const AppContainer = () => {
   return (
     <BrowserRouter>
       <AppView>
-        <Menu />
+        {/* <Menu /> */}
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/new" element={<New />} />
         </Routes>
       </AppView>
-      <Footer />
+      {/* <Footer /> */}
       <Toaster />
     </BrowserRouter>
   )

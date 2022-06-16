@@ -1,10 +1,9 @@
 import styled from 'styled-components/macro'
-import { FullPage } from 'styles'
 
-export const HomeStyled = styled(FullPage)`
-  background-image: url('/images/bg.jpg');
-  background-size: contain;
+export const HomeStyled = styled.div`
+  background-image: url('/bg.svg');
+  background-size: cover;
   background-repeat: no-repeat;
 
-  }
+  min-height: 100vh;
 `
