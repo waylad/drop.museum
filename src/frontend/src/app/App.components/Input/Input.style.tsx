@@ -12,15 +12,15 @@ export const InputComponent = styled.input`
   display: block;
   position: relative;
   height: 40px;
-  padding: 12px 16px 12px 38px;
+  padding: 12px 16px 12px 16px;
   transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
   will-change: border-color, box-shadow;
-  background-color: ${containerColor};
+  /* background-color: ${containerColor}; */
 
-  border: 2px solid rgba(255, 255, 255, 0.05);
+  border: 1px solid #bdbdb8;
   box-sizing: border-box;
-  box-shadow: -5px -5px 10px rgba(8, 21, 45, 0.6), 5px 5px 10px rgba(5, 12, 27, 0.6);
-  border-radius: 8px;
+  /* box-shadow: -5px -5px 10px rgba(8, 21, 45, 0.6), 5px 5px 10px rgba(5, 12, 27, 0.6); */
+  border-radius: 1px;
 
   &:disabled {
     background: ${textColor};
