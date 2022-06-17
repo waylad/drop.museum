@@ -17,7 +17,7 @@ export const CardPage = styled.div`
 
 export const FullPage = styled.div`
   width: 100vw;
-  margin: 120px auto 20px auto;
+  margin: 0 auto 0 auto;
   max-width: 1280px;
   min-height: 100vh;
 `

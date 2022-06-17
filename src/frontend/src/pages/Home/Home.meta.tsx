@@ -7,7 +7,7 @@ type HomeMetaProps = {
 
 export const HomeMeta = ({ meta }: HomeMetaProps) => {
   const title = `drop.museum`
-  const description = `Create an NFT Airdrop at the Museum`
+  const description = `Create an NFT Airdrop at the Museum!`
 
   return (
     <Helmet>

@@ -25,13 +25,13 @@ export const connect =
         await state.wallet.wallet?.connect((process.env.REACT_APP_NETWORK || 'granadanet') as TempleDAppNetwork, {
           forcePermission,
         })
-        const tzs = state.wallet.wallet?.toTezos()
-        const accountPkh = await tzs?.wallet.pkh()
+        const tezos = state.wallet.wallet?.toTezos()
+        const accountPkh = await tezos?.wallet.pkh()
 
         dispatch({
           type: CONNECT,
-          tezos: tzs,
-          ready: Boolean(tzs),
+          tezos,
+          ready: Boolean(tezos),
           accountPkh: accountPkh,
         })
       }

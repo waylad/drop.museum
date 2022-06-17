@@ -4,6 +4,6 @@ export const HomeStyled = styled.div`
   background-image: url('/bg.svg');
   background-size: cover;
   background-repeat: no-repeat;
-
+  cursor: pointer;
   min-height: 100vh;
 `
