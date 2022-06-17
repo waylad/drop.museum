@@ -1,6 +1,8 @@
 import { TempleWallet } from '@temple-wallet/dapp'
 import { Home } from 'pages/Home/Home.controller'
+import { Mint } from 'pages/Mint/Mint.controller'
 import { New } from 'pages/New/New.controller'
+import { QrCode } from 'pages/QrCode/QrCode.controller'
 import { useEffect } from 'react'
 import { Provider, useDispatch } from 'react-redux'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
@@ -30,6 +32,8 @@ export const AppContainer = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/new" element={<New />} />
+          <Route path="/new/:address" element={<QrCode />} />
+          <Route path="/mint/:address" element={<Mint />} />
         </Routes>
       </AppView>
       {/* <Footer /> */}

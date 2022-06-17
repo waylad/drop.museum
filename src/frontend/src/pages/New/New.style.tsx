@@ -38,7 +38,7 @@ export const UploaderFileSelector = styled.div`
 `
 
 export const UploaderLabel = styled.label`
-  height: 60px;
+  height: 40px;
   width: 200px;
   border: 1px solid #bdbdb8;
   box-sizing: border-box;
