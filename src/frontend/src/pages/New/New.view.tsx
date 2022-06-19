@@ -89,7 +89,7 @@ export const NewView = ({ tempTxCallback, loading, accountPkh }: NewViewProps) =
           <div>{imageUrl}</div>
         ) : (
           <UploaderFileSelector>
-            <UploaderLabel htmlFor="uploader">{isUploading ? 'Uploading...' : 'Upload with Filecoin'}</UploaderLabel>
+            <UploaderLabel htmlFor="uploader">{isUploading ? 'Uploading...' : 'Upload to IPFS'}</UploaderLabel>
             <input
               id="uploader"
               type="file"

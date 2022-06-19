@@ -1,14 +1,16 @@
-import code from '../compiled/FA2_NFT.json'
 import { InMemorySigner } from '@taquito/signer'
 import { MichelsonMap, TezosToolkit } from '@taquito/taquito'
 import { char2Bytes } from '@taquito/utils'
 import dotenv from 'dotenv'
 
+import code from './compiled/FA2_NFT.json'
 import { saveContractAddress } from './helpers'
 import metadataJson from './metadata.json'
 
 // Read environment variables from .env file
 dotenv.config()
+
+console.log('Deploying at', process.env.NODE_URL, 'with', process.env.PKH)
 
 // Initialize RPC connection
 //@ts-ignore
@@ -22,17 +24,26 @@ const deploy = async () => {
 
     Tezos.setProvider({ signer })
 
+    // const storage = {
+    //   metadata: MichelsonMap.fromLiteral({
+    //     '': char2Bytes('tezos-storage:contents'),
+    //     contents: char2Bytes(JSON.stringify(metadataJson)),
+    //   }),
+    // }
+
     const storage = {
-      metadata: MichelsonMap.fromLiteral({
-        '': char2Bytes('tezos-storage:contents'),
-        contents: char2Bytes(JSON.stringify(metadataJson)),
-      }),
+      ledger: MichelsonMap.fromLiteral({}),
+      token_metadata: MichelsonMap.fromLiteral({}),
+      operators: MichelsonMap.fromLiteral({}),
+      admin: process.env.PKH,
     }
+
+    console.log('Originating...')
 
     const op = await Tezos.contract.originate({ code, storage })
     await op.confirmation()
-    console.log(`[OK] ${op.contractAddress}`)
-    saveContractAddress('factory', op.contractAddress as string)
+    console.log(`Deployed at ${op.contractAddress}`)
+    saveContractAddress('fa2', op.contractAddress as string)
   } catch (e) {
     console.log(e)
   }
