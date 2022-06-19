@@ -20,7 +20,7 @@ export const Home = () => {
   return (
     <>
       {ready ? (
-        <Navigate to="/new" replace />
+        <Navigate to="/originate" replace />
       ) : (
         <HomeView
           loading={loading}

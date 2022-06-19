@@ -1,23 +1,23 @@
 import styled from 'styled-components/macro'
 import { textColor } from 'styles'
 
-export const NewGrid = styled.div`
+export const CreateGrid = styled.div`
   display: grid;
   grid-template-columns: calc(50vw - 430px) 800px calc(50vw - 430px);
   grid-gap: 30px;
 `
 
-export const NewBgLeft = styled.div`
+export const CreateBgLeft = styled.div`
   > img {
   }
 `
 
-export const NewBgRight = styled.div`
+export const CreateBgRight = styled.div`
   > img {
   }
 `
 
-export const NewStyled = styled.div`
+export const CreateStyled = styled.div`
   > a > img {
     margin: 20px 0;
   }

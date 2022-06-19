@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 // import { create } from 'ipfs-http-client'
 
 // prettier-ignore
-import { NewBgLeft, NewBgRight, NewGrid, NewStyled, UploaderFileSelector, UploaderLabel } from './New.style'
+import { CreateBgLeft, CreateBgRight, CreateGrid, CreateStyled, UploaderFileSelector, UploaderLabel } from './Create.style'
 const { create } = require('ipfs-http-client')
 
 const client = create({
@@ -13,13 +13,13 @@ const client = create({
   protocol: 'https',
 })
 
-type NewViewProps = {
+type CreateViewProps = {
   tempTxCallback: (amount: number) => void
   loading: boolean
   accountPkh?: string
 }
 
-export const NewView = ({ tempTxCallback, loading, accountPkh }: NewViewProps) => {
+export const CreateView = ({ tempTxCallback, loading, accountPkh }: CreateViewProps) => {
   const [name, setName] = useState('')
   const [description, setDescription] = useState('')
   const [isUploading, setIsUploading] = useState(false)
@@ -42,11 +42,11 @@ export const NewView = ({ tempTxCallback, loading, accountPkh }: NewViewProps) =
   }
 
   return (
-    <NewGrid>
-      <NewBgLeft>
+    <CreateGrid>
+      <CreateBgLeft>
         <img alt="bg-left" src="/bg2-left.svg" />
-      </NewBgLeft>
-      <NewStyled>
+      </CreateBgLeft>
+      <CreateStyled>
         <Link to="/">
           <img alt="logo" src="/logo.svg" />
         </Link>
@@ -102,10 +102,10 @@ export const NewView = ({ tempTxCallback, loading, accountPkh }: NewViewProps) =
         <Link to="/new/KT1xxxxxx">
           <img alt="button-deploy" src="/button-deploy.svg" />
         </Link>
-      </NewStyled>
-      <NewBgRight>
+      </CreateStyled>
+      <CreateBgRight>
         <img alt="bg-right" src="/bg2-right.svg" />
-      </NewBgRight>
-    </NewGrid>
+      </CreateBgRight>
+    </CreateGrid>
   )
 }

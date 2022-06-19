@@ -4,7 +4,7 @@ import { ERROR, INFO, SUCCESS } from 'app/App.components/Toaster/Toaster.constan
 import { State } from 'reducers'
 
 export const GET_NEW_DROP_STORAGE = 'GET_NEW_DROP_STORAGE'
-export const getNewStorage = (accountPkh?: string) => async (dispatch: any, getState: any) => {
+export const getCreateStorage = (accountPkh?: string) => async (dispatch: any, getState: any) => {
   const state: State = getState()
 
   if (!accountPkh) {
@@ -67,7 +67,7 @@ export const tempTx = (amount: number) => async (dispatch: any, getState: any) =
       type: TEMP_TX_RESULT,
     })
 
-    dispatch(getNewStorage(state.wallet.accountPkh))
+    dispatch(getCreateStorage(state.wallet.accountPkh))
   } catch (error: any) {
     console.error(error)
     dispatch(showToaster(ERROR, 'Error', error.message))

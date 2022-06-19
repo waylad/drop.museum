@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux'
 
 import { loading, LoadingState } from './loading'
-import { newDrop, NewDropState } from './newDrop'
+import { contract, ContractState } from './contract'
 import { popup, PopupState } from './popup'
 import { progressBar, ProgressBarState } from './progressBar'
 import { toaster, ToasterState } from './toaster'
@@ -12,7 +12,7 @@ export const reducers = combineReducers({
   progressBar,
   toaster,
   popup,
-  newDrop,
+  contract,
   wallet,
 })
 
@@ -21,6 +21,6 @@ export interface State {
   progressBar: ProgressBarState
   toaster: ToasterState
   popup: PopupState
-  newDrop: NewDropState
+  contract: ContractState
   wallet: WalletState
 }
