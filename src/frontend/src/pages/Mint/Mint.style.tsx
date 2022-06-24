@@ -5,15 +5,25 @@ export const MintGrid = styled.div`
   display: grid;
   grid-template-columns: calc(50vw - 430px) 800px calc(50vw - 430px);
   grid-gap: 30px;
+
+  @media (max-width: 700px) {
+    grid-template-columns: 0 auto 0;
+  }
 `
 
 export const MintBgLeft = styled.div`
-  > img {
+  @media (max-width: 700px) {
+    > img {
+      display: none;
+    }
   }
 `
 
 export const MintBgRight = styled.div`
-  > img {
+  @media (max-width: 700px) {
+    > img {
+      display: none;
+    }
   }
 `
 
@@ -37,10 +47,14 @@ export const MintStyled = styled.div`
 
 export const MintNftGrid = styled.div`
   display: grid;
-  grid-template-columns: auto auto;
-  grid-gap: 10px;
+  grid-template-columns: 400px auto;
+  grid-gap: 30px;
   border: 1px solid #bdbdb8;
   border-radius: 1px;
+
+  > img {
+    width: 100%;
+  }
 
   > div {
     margin: 20px 10px;
@@ -48,5 +62,9 @@ export const MintNftGrid = styled.div`
     > div {
       margin-top: 10px;
     }
+  }
+
+  @media (max-width: 700px) {
+    grid-template-columns: auto;
   }
 `

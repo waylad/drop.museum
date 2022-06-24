@@ -5,15 +5,25 @@ export const OriginateGrid = styled.div`
   display: grid;
   grid-template-columns: calc(50vw - 430px) 800px calc(50vw - 430px);
   grid-gap: 30px;
+
+  @media (max-width: 700px) {
+    grid-template-columns: 0 auto 0;
+  }
 `
 
 export const OriginateBgLeft = styled.div`
-  > img {
+  @media (max-width: 700px) {
+    > img {
+      display: none;
+    }
   }
 `
 
 export const OriginateBgRight = styled.div`
-  > img {
+  @media (max-width: 700px) {
+    > img {
+      display: none;
+    }
   }
 `
 
