@@ -29,7 +29,7 @@ export const OriginateView = ({ originateCallback, loading, accountPkh }: Origin
           The contract admin will be <b>{accountPkh}</b>
         </div>
 
-        {loading ? <div>Loading...</div> : <img onClick={() => originateCallback()} alt="button-deploy" src="/button-deploy.svg" />}
+        {loading ? <div>Deploying...</div> : <img onClick={() => originateCallback()} alt="button-deploy" src="/button-deploy.svg" />}
       </OriginateStyled>
       <OriginateBgRight>
         <img alt="bg-right" src="/bg2-right.svg" />

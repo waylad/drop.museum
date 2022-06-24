@@ -2,7 +2,7 @@ import { MichelsonMap } from '@taquito/taquito'
 import { showToaster } from 'app/App.components/Toaster/Toaster.actions'
 import { ERROR, INFO, SUCCESS } from 'app/App.components/Toaster/Toaster.constants'
 import { State } from 'reducers'
-
+import axios from 'axios'
 import code from './FA2_NFT.json'
 
 export const ORIGINATE_REQUEST = 'ORIGINATE_REQUEST'
@@ -12,12 +12,12 @@ export const originate = () => async (dispatch: any, getState: any) => {
   const state: State = getState()
 
   if (!state.wallet.tezos) {
-    dispatch(showToaster(ERROR, 'Please connect your wallet', 'Return to homepage'))
+    dispatch(showToaster(ERROR, 'Please connect your wallet', 'Please return to homepage'))
     return
   }
 
   if (!state.wallet.accountPkh) {
-    dispatch(showToaster(ERROR, 'Please connect your wallet', 'Return to homepage'))
+    dispatch(showToaster(ERROR, 'Please connect your wallet', 'Please return to homepage'))
     return
   }
 
@@ -37,21 +37,26 @@ export const originate = () => async (dispatch: any, getState: any) => {
     dispatch({
       type: ORIGINATE_REQUEST,
     })
-    dispatch(showToaster(INFO, 'Originating...', 'Please wait 30s'))
+    dispatch(showToaster(SUCCESS, 'Originating...', 'Please wait 30s'))
 
     const op = await state.wallet.tezos.wallet.originate({ code, storage }).send()
-    console.log(op)
+    await op.confirmation()
 
-    // const op = await state.wallet.tezos.contract.originate({ code, storage })
-    // await op.confirmation()
-    // console.log(`Deployed at ${op.contractAddress}`)
+    console.log(`Deployed`, op)
 
-    // dispatch(showToaster(SUCCESS, 'Smart contract deployed', op.contractAddress || ''))
+    const opHash = op.opHash
 
-    // dispatch({
-    //   type: ORIGINATE_RESULT,
-    //   address: op.contractAddress,
-    // })
+    const resp = await axios.get(`https://api.ithacanet.tzkt.io/v1/operations/${opHash}`)
+    console.log(resp.data)
+
+    const address = resp.data[0].originatedContract.address
+
+    dispatch(showToaster(SUCCESS, 'Smart contract deployed', address))
+
+    dispatch({
+      type: ORIGINATE_RESULT,
+      address,
+    })
   } catch (error: any) {
     console.error(error)
     dispatch(showToaster(ERROR, 'Error', error.message))

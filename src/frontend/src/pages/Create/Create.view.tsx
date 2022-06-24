@@ -1,10 +1,10 @@
 import { Input } from 'app/App.components/Input/Input.view'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-// import { create } from 'ipfs-http-client'
 
 // prettier-ignore
 import { CreateBgLeft, CreateBgRight, CreateGrid, CreateStyled, UploaderFileSelector, UploaderLabel } from './Create.style'
+
 const { create } = require('ipfs-http-client')
 
 const client = create({
@@ -14,12 +14,13 @@ const client = create({
 })
 
 type CreateViewProps = {
-  tempTxCallback: (amount: number) => void
+  createCallback: (name: string, description: string, image: string) => void
   loading: boolean
   accountPkh?: string
+  address?: string
 }
 
-export const CreateView = ({ tempTxCallback, loading, accountPkh }: CreateViewProps) => {
+export const CreateView = ({ address, createCallback, loading, accountPkh }: CreateViewProps) => {
   const [name, setName] = useState('')
   const [description, setDescription] = useState('')
   const [isUploading, setIsUploading] = useState(false)
@@ -52,12 +53,13 @@ export const CreateView = ({ tempTxCallback, loading, accountPkh }: CreateViewPr
         </Link>
 
         <div>
-          You are about to create an NFT airdrop. This page will allow you to deploy a new FA2 smart contract. You will be the owner of the
-          contract and have full admin rights over it, not drop.museum. You will then receive a link and a QR code that you can share and
-          will allow people to mint an NFT from your contract.
+          Your smart contract is now deployed on <b>{address}</b> with admin <b>{accountPkh}</b>
         </div>
         <div>
-          Logged in as <b>{accountPkh}</b>
+          The next step is to create a new token and associated airdrop in the smart contract (Note that only the admin of your contract can
+          do so.) Please enter a name and description for your NFT airdrop and upload an image via IPFS. (The current version of drop.museum
+          only support airdrop of identical NFT art, but next versions will allow airdrop of unique NFT art per mint.) You will then receive
+          a link and a QR code that you can share with your users/visitors to mint an NFT from your contract.
         </div>
 
         <label htmlFor="name">Name</label>
@@ -99,9 +101,11 @@ export const CreateView = ({ tempTxCallback, loading, accountPkh }: CreateViewPr
           </UploaderFileSelector>
         )}
 
-        <Link to="/new/KT1xxxxxx">
-          <img alt="button-deploy" src="/button-deploy.svg" />
-        </Link>
+        {loading ? (
+          <div>Creating token...</div>
+        ) : (
+          <img onClick={() => createCallback(name, description, imageUrl)} alt="button-create" src="/button-create.svg" />
+        )}
       </CreateStyled>
       <CreateBgRight>
         <img alt="bg-right" src="/bg2-right.svg" />
