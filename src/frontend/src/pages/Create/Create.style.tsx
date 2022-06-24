@@ -29,6 +29,10 @@ export const CreateStyled = styled.div`
   > label {
     margin-bottom: 10px;
   }
+
+  > img {
+    cursor: pointer;
+  }
 `
 
 export const UploaderFileSelector = styled.div`

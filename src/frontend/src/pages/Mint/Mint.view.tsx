@@ -4,13 +4,15 @@ import { Link } from 'react-router-dom'
 import { MintBgLeft, MintBgRight, MintGrid, MintNftGrid, MintStyled } from './Mint.style'
 
 type MintViewProps = {
-  tempTxCallback: (amount: number) => void
+  mintCallback: () => void
+  connectCallback: () => void
   loading: boolean
   accountPkh?: string
   address?: string
+  metadata?: any
 }
 
-export const MintView = ({ tempTxCallback, loading, accountPkh, address }: MintViewProps) => {
+export const MintView = ({ mintCallback, metadata, connectCallback, loading, accountPkh, address }: MintViewProps) => {
   return (
     <MintGrid>
       <MintBgLeft>
@@ -23,14 +25,22 @@ export const MintView = ({ tempTxCallback, loading, accountPkh, address }: MintV
         <div>Congratulation, you can participate in this airdrop and mint the NFT below!</div>
 
         <MintNftGrid>
-          <img alt="nft" src="/demo-nft.svg" />
+          {metadata ? (
+            <img alt="nft" src={`https://cloudflare-ipfs.com/ipfs/${metadata.displayUri.replace('ipfs://', '')}`} />
+          ) : (
+            <div>Loading...</div>
+          )}
           <div>
-            <b>Demo NFT</b>
-            <div>This is the official DROP MUSEUM NFT</div>
+            <b>{metadata ? metadata.name : 'Loading...'}</b>
+            <div>{metadata ? metadata.description : 'Loading...'}</div>
           </div>
         </MintNftGrid>
 
-        <img alt="button-mint" src="/button-mint.svg" />
+        {accountPkh ? (
+          <img onClick={() => mintCallback()} alt="button-mint" src="/button-mint.svg" />
+        ) : (
+          <img onClick={() => connectCallback()} alt="button-connect" src="/button-connect.svg" />
+        )}
       </MintStyled>
       <MintBgRight>
         <img alt="bg-right" src="/bg2-right.svg" />

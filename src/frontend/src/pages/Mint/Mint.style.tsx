@@ -29,6 +29,10 @@ export const MintStyled = styled.div`
   > label {
     margin-bottom: 10px;
   }
+
+  > img {
+    cursor: pointer;
+  }
 `
 
 export const MintNftGrid = styled.div`

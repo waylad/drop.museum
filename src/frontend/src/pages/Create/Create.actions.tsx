@@ -38,16 +38,22 @@ export const create = (name: string, description: string, image: string) => asyn
     dispatch({
       type: CREATE_REQUEST,
     })
-    dispatch(showToaster(SUCCESS, 'Creating token...', 'Please wait 30s'))
 
     const contract = await state.wallet.tezos?.wallet.at(state.contract.address)
     const token_id = 0
     const token_info = MichelsonMap.fromLiteral({
-      name: Buffer.from('TEST').toString('hex'),
-      symbol: Buffer.from('TEST').toString('hex'),
-      description: Buffer.from('0').toString('hex'),
+      name: Buffer.from(name).toString('hex'),
+      symbol: Buffer.from(name).toString('hex'),
+      description: Buffer.from(description).toString('hex'),
+      artifactUri: Buffer.from(image).toString('hex'),
+      displayUri: Buffer.from(image).toString('hex'),
+      creators: Buffer.from(image).toString('hex'),
+      decimals: Buffer.from('0').toString('hex'),
+      thumbnailUri: Buffer.from('https://drop.museum/logo512.png').toString('hex'),
     })
     const createTransaction = await contract.methods.create_token(token_id, token_info, token_id).send()
+    dispatch(showToaster(SUCCESS, 'Creating token...', 'Please wait 30s'))
+
     const createDone = await createTransaction.confirmation()
     console.log('done', createDone)
 

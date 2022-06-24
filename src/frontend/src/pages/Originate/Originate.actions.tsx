@@ -37,9 +37,10 @@ export const originate = () => async (dispatch: any, getState: any) => {
     dispatch({
       type: ORIGINATE_REQUEST,
     })
-    dispatch(showToaster(SUCCESS, 'Originating...', 'Please wait 30s'))
 
     const op = await state.wallet.tezos.wallet.originate({ code, storage }).send()
+    dispatch(showToaster(SUCCESS, 'Originating...', 'Please wait 30s'))
+
     await op.confirmation()
 
     console.log(`Deployed`, op)

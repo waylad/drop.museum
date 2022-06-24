@@ -1,5 +1,4 @@
 import { Input } from 'app/App.components/Input/Input.view'
-import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { QRCodeSVG } from 'qrcode.react'
 

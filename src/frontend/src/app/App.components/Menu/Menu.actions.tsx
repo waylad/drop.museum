@@ -22,7 +22,7 @@ export const connect =
         dispatch(showToaster(ERROR, 'Temple Wallet not available', ''))
         throw new Error('Temple Wallet not available')
       } else {
-        await state.wallet.wallet?.connect((process.env.REACT_APP_NETWORK || 'ithacanet') as TempleDAppNetwork, {
+        await state.wallet.wallet?.connect('ithacanet' as TempleDAppNetwork, {
           forcePermission,
         })
         const tezos = state.wallet.wallet?.toTezos()

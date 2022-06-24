@@ -20,7 +20,7 @@ export const AppContainer = () => {
 
   useEffect(() => {
     return TempleWallet.onAvailabilityChange((available) => {
-      if (available) dispatch(setWallet(new TempleWallet(process.env.REACT_APP_NAME || 'LIGOLIG')))
+      if (available) dispatch(setWallet(new TempleWallet('drop.museum')))
     })
   }, [dispatch])
 

@@ -53,7 +53,13 @@ export const CreateView = ({ address, createCallback, loading, accountPkh }: Cre
         </Link>
 
         <div>
-          Your smart contract is now deployed on <b>{address}</b> with admin <b>{accountPkh}</b>
+          Your smart contract is now deployed on{' '}
+          <b>
+            <a href={`https://test.better-call.dev/ithacanet/${address}/operations`} target="_blank" rel="noreferrer">
+              {address}
+            </a>
+          </b>{' '}
+          with admin <b>{accountPkh}</b>
         </div>
         <div>
           The next step is to create a new token and associated airdrop in the smart contract (Note that only the admin of your contract can
