@@ -80,7 +80,7 @@ export const mint = (address: string) => async (dispatch: any, getState: any) =>
     const token_id = 0
     const owner = state.wallet.accountPkh
     const mintTransaction = await contract.methods.mint_token([{ owner, token_id }]).send()
-    dispatch(showToaster(SUCCESS, 'Creating token...', 'Please wait 30s'))
+    dispatch(showToaster(SUCCESS, 'Minting NFT...', 'Please wait 30s'))
 
     const mintDone = await mintTransaction.confirmation()
     console.log('done', mintDone)
