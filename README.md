@@ -2,7 +2,7 @@
 
 ## Live Demo: https://drop.museum
 
-## Demo Video: Currently uploading, coming very soon!
+## Demo Video: https://youtu.be/1frvVAl_OY4
 
 # About
 
